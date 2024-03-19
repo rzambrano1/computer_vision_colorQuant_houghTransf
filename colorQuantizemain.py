@@ -143,6 +143,8 @@ def main(input_file_name, low_k, high_k):
 
     plt.savefig(PATH_FINAL_OUT)
 
+    plt.show()
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Pass a string with the name JPG file in the folder, a low value for the number of clusters in the k-means algorithm, and a high value for the number of clusters in the k-means algorithm')
