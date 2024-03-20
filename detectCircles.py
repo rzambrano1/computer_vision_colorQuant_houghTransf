@@ -28,5 +28,7 @@ from skimage import io
 from skimage.color import rgb2gray
 from skimage.color import rgb2hsv
 from skimage.color import hsv2rgb
+from skimage.filters import threshold_otsu
+from skimage.feature import canny
 
 

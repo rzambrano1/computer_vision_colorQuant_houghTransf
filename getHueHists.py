@@ -62,7 +62,7 @@ def getHueHists(im: npt.NDArray[np.uint8], k: int)-> Tuple[matplotlib.figure.Fig
     ------
     Raises:AssertionError, if the number of channels in im parameter does not equal 3
     Raises:AssertionError, if the data type in the array of the im parameter is not np.uint8
-    Raises:TypeError, is k is not of type int and the provided parameter's type cannot be casted into int 
+    Raises:ValueError, if k is not of type int and the provided parameter's type cannot be casted into int 
     
     Examples
     --------
