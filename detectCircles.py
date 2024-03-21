@@ -123,7 +123,7 @@ def detectCircles(im: npt.NDArray[np.uint8], radius: float, useGradient: bool=Fa
         ])
         
         accumulator = Counter() # Initializes the accumulator
-        h,w = eyes_deer_gray.shape # Recording the height and width of the image to handle border points
+        h,w = im_gray.shape # Recording the height and width of the image to handle border points
         
         for row,col in edges:
             
@@ -143,13 +143,18 @@ def detectCircles(im: npt.NDArray[np.uint8], radius: float, useGradient: bool=Fa
                 # Computes local direction of the gradient at the pixel lying on the edge
                 # https://en.wikipedia.org/wiki/Image_gradient
                 theta = np.arctan(dy/dy)
+                
+                # Computes the magnitude of the gradient
+                # Using the magnitude as a weight to provide more votes to stronger edges
+                # After testing it improves the output of the algorithm
+                magnitude = np.sqrt(dy*dy+dx*dx)
 
                 a = np.array([int(row - np.round(radius*np.cos(theta)))])
                 b = np.array([int(col + np.round(radius*np.sin(theta)))])
                 circle_parameters = np.c_[float(a),float(b)][0] # No need to trace all points in the circle located in the
                                                # Hough space for x,y edge point since we estimated the likely parameters
                                                # using the diection of the gradient at this point x,y
-                accumulator[str(circle_parameters)] += 1
+                accumulator[str(circle_parameters)] += 1*magnitude
                 
             else: # Adding this line for readability. If the edge lies at the borther of the image, just skip
                 pass
