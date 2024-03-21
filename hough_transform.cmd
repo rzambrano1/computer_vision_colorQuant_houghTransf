@@ -13,8 +13,18 @@ ECHO Starting script for eyes_deer.jpg image...
 
 python houghTransformMain.py -in eyes_deer -r 2 -c 10 -b 5
 
+ECHO Changing the bin size... 
+
+python houghTransformMain.py -in eyes_deer -r 2 -c 10 -b 10
+
 ECHO Starting script for sports_balls.jpg image... 
 
 python houghTransformMain.py -in sports_balls -r 25 -c 2 -b 5
 
+ECHO Changing the radius size... 
+
 python houghTransformMain.py -in sports_balls -r 75 -c 2 -b 5
+
+ECHO Changing the bin size... 
+
+python houghTransformMain.py -in sports_balls -r 25 -c 2 -b 15
